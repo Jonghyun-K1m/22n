@@ -15,6 +15,7 @@ public class HelloController {
 		//${data}값을 thisisdatavalue로 설정
 		return "hello";
 		/* 
+		 * 
 		 *  localhost:8080/hello.html 로 가라
 		 */
  }
