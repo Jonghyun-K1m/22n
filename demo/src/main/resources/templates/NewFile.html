@@ -36,16 +36,25 @@
 
 
 
-    <form action="/board/search" method="GET">
+    <form action="/search" method="GET">
         <div class="search">
-            <input name="keyword" type="text" placeholder="검색어를 입력해주세요">
+            <input name="keyword" type="text" placeholder="타이틀 검색어를 입력해주세요">
         </div>
-        <button>검색하기</button>
+        <button>제목검색하기</button>
     </form>
-    
+ 
+ 
+    <form action="/searchname" method="GET">
+        <div class="searchname">
+            <input name="keyword" type="text" placeholder="이름 검색어를 입력해주세요">
+        </div>
+        <button>이름일치검색하기</button>
+    </form>
+       
     <form action="/write" method="GET">
-    	<button>작성하기</button>
+    	<button>새글작성하기</button>
     </form>
+  
         
 </body>
 </html>

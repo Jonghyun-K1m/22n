@@ -1,6 +1,7 @@
 package com.retry.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,28 @@ public class BoardService {
 	public void realSAVE(board board) {
 		boardRepository.save(board);		
 	}
+
+	
+	@Transactional	
+	public List<board> findByName(String str) {
+		 try {
+			
+			 return boardRepository.findByName(str);
+		 } finally {
+	
+		 }
+	}	
+	
+	@Transactional	
+	public List<board> findByTitle(String str) {
+		 try {
+			
+			 return boardRepository.findByTitle(str);
+		 } finally {
+	
+		 }
+	}	
+	
 
 	@Transactional	
 	public List<board> showLists() {

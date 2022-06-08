@@ -2,6 +2,7 @@ package com.retry.controller;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,12 +33,29 @@ public class BoardController {
 
 		@PostMapping("post")
 		public String post(board model) {
-			System.out.println(model.getContent()+model.getTitle()+model.getWriter());
+			//System.out.println(model.getContent()+model.getTitle()+model.getWriter());
 			bs.realSAVE(model);
 			//${data}값을 thisisdatavalue로 설정
 			return "redirect:/main";
 	    }
-		
+		@GetMapping("search")
+		public String search(@RequestParam(value="keyword") String keyword,Model model) {
+			//model.addAttribute("data", "maain");
+			//${data}값을 thisisdatavalue로 설정
+			
+			List<board> blist =bs.findByTitle(keyword);
+			model.addAttribute("Lists", blist);	
+			return "NewFile";
+	    }
+		@GetMapping("searchname")
+		public String searchname(@RequestParam(value="keyword") String keyword,Model model) {
+			//model.addAttribute("data", "maain");
+			//${data}값을 thisisdatavalue로 설정
+			
+			List<board> blist =bs.findByName(keyword);
+			model.addAttribute("Lists", blist);	
+			return "NewFile";
+	    }		
 	@GetMapping("main")
 	public String main(Model model) {
 		List<board> blist = bs.showLists();
@@ -53,6 +71,8 @@ public class BoardController {
 		//${data}값을 thisisdatavalue로 설정
 		return "write";
     }
+
+	
 //  post수정용	
 //	@PostMapping("post")
 //	public String post(board model) {

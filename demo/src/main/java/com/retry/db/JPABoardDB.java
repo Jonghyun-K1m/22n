@@ -25,11 +25,21 @@ public class JPABoardDB implements BoardDB {
 		return em.createQuery("select m from board m", board.class)
 				.getResultList();
 	}
-	public Optional<board> findByName(String name) {
-		List<board> result = em.createQuery("select m from board m where m.name = :name", board.class)
+	public List<board> findByName(String name) {
+		List<board> result = em.createQuery("select m from board m where m.writer = :name", board.class)
 				.setParameter("name", name)
 				.getResultList();
-		return result.stream().findAny();
+		return result;
+	}
+	
+	public List<board> findByTitle(String keyword) {
+		
+		List<board> result = em.createQuery(
+			//	"select u from board u where u.title = :keyword", board.class)
+				"SELECT u FROM board u WHERE u.title LIKE CONCAT('%',:keyword,'%')", board.class)
+				.setParameter("keyword", keyword)
+				.getResultList();
+		return result;
 	}
 
 }

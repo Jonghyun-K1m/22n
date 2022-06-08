@@ -7,7 +7,8 @@ import java.util.Optional;
 public interface BoardDB {
 	board save(board board);
 	Optional<board> findById(Long id);
-	Optional<board> findByName(String name);
+	List<board> findByName(String name);
+	List<board> findByTitle(String title);
 	List<board> findAll();
- 
+	
 }

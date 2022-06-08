@@ -1,4 +1,5 @@
 package com.retry.entity;
+
 import lombok.AccessLevel;
 import javax.persistence.Entity;
 
@@ -35,7 +36,6 @@ public class board {
 		 this.id=id;
 		 this.title=title;
 		 this.content=content;
-		 this.writer=writer;
-		
+		 this.writer=writer;		
 	 }
 }
