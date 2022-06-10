@@ -29,7 +29,17 @@ public class BoardController {
 //	public String main() {
 //		return "NewFile";
 //    }
+		@GetMapping("index")
+		public String index() {
+			return "index";
+	    }
+		@GetMapping("indexgo")
+		public String indexgo(Model model) {
+			List<board> blist = bs.showLists();
+			 model.addAttribute("Lists", blist);
+			 return "index";
 		
+	    }			
 
 		@PostMapping("post")
 		public String post(board model) {
