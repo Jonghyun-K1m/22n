@@ -17,8 +17,11 @@
 #spring boot JPA 쿼리작성 ㄹㅇ놀라운게많지만 쿼리직작으로 @query 상황대비연습
 #일반쿼리문과 다른구조라 JPAboardDB.java 직구현한 내용복습하기
 
-
-
+# DTO why ???
+# Entity의 값이 변하면 Repository 클래스의 Entity Manager의 flush가 호출될 때 DB에 값이 반영되고, 
+# 이는 다른 로직들에도 영향을 미친다. 
+# 때문에 View와 통신하면서 필연적으로 데이터의 변경이 많은 DTO 클래스를 분리해주어야 한다.
+# from : https://velog.io/@ohzzi
 
 #220610
 #Done	: css적용 (indexgo)
@@ -27,3 +30,18 @@
 		: onclick 시 내용포함한 페이지로 진행
 		: 수정,삭제버튼 클릭시 패스워드로 인증
 		: 로깅처리
+		:
+# time관리하려면 자바8에서 hibernate 버전 맞추어서 라이브러리넣고 설정맞추어야하는 부분있는데
+# hibernate5.2 윗버전에서는 하이버가 알아서해줌
+
+
+
+#220613
+#Done	: update , delete , onclick
+#TO-DO	: 로깅
+		: 보안(삭제등등에)
+		: 객체업데이트
+		: DTO
+		: css 모든페이지
+
+

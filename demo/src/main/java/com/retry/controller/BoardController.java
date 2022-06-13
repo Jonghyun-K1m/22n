@@ -6,7 +6,9 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,6 +31,24 @@ public class BoardController {
 //	public String main() {
 //		return "NewFile";
 //    }
+
+	
+	    
+		@GetMapping("view/{no}")
+		public String view(@PathVariable("no") Long id, Model model) {
+			board board=bs.findById(id);
+			model.addAttribute("Lists", board);	
+			model.addAttribute("idvalue", board.getId());	
+			
+			return "viewpage";
+	    }
+		@GetMapping("edit/{no}")
+		public String edit(@PathVariable("no") Long id, Model model) {
+			board board=bs.findById(id);
+			model.addAttribute("Lists", board);	
+			return "editpage";
+	    }
+		 
 		@GetMapping("index")
 		public String index() {
 			return "index";
@@ -37,10 +57,22 @@ public class BoardController {
 		public String indexgo(Model model) {
 			List<board> blist = bs.showLists();
 			 model.addAttribute("Lists", blist);
-			 return "index";
-		
+			 return "index";		
 	    }			
-
+		@PostMapping("update")
+		public String update(board model) {
+			//System.out.println(model.getContent()+model.getTitle()+model.getWriter());
+			bs.realUPDATE(model);
+			//${data}값을 thisisdatavalue로 설정
+			return "redirect:/main";
+	    }
+		
+	 
+		@PostMapping("delete")
+		public String delete(Long id) {
+			bs.realDELETE(id);
+			return "redirect:/main";
+	    }	    
 		@PostMapping("post")
 		public String post(board model) {
 			//System.out.println(model.getContent()+model.getTitle()+model.getWriter());
@@ -82,6 +114,7 @@ public class BoardController {
 		return "write";
     }
 
+	
 	
 //  post수정용	
 //	@PostMapping("post")

@@ -3,7 +3,7 @@ package com.retry;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
+import org.springframework.web.filter.*;
 import com.retry.db.BoardDB;
 import com.retry.db.JPABoardDB;
 import com.retry.service.BoardService;
@@ -19,6 +19,10 @@ public class SpringConfig {
 	public SpringConfig(DataSource dataSource, EntityManager em) {
 	 this.dataSource = dataSource;
 	 this.em = em;
+	}
+	@Bean
+	public HiddenHttpMethodFilter HiddenHttpMethodFilter() {
+		return new HiddenHttpMethodFilter();
 	}
 	@Bean
 	public BoardService boardService() {

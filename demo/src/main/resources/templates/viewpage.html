@@ -1,0 +1,45 @@
+
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+ <title>Hello</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<p th:text="'안녕하세요. ' + ${data}" >안녕하세요. 손님</p>
+
+
+      <table>
+        <thead>
+        <tr>
+            <th class="one wide">번호</th>
+            <th class="ten wide">글제목</th>
+            <th class="two wide">작성자</th>
+            <th class="three wide">내용</th>
+        </tr>
+        </thead>
+        <tbody>
+       
+        <!-- CONTENTS !-->
+		<tr th:each="list : ${Lists}">
+ 			<td th:text="${list.id}"></td>
+ 			<td th:text="${list.title}"></td>	
+ 			<td th:text="${list.writer}"></td>
+			<td th:text="${list.content}"></td>
+		</tr>
+        </tbody>
+        </table>
+        
+   <form id="delete" th:action="@{'/delete/' + ${idvalue}}" method="post">
+            <input type="hidden" name="_method" value="delete"/>
+            <button id="delete-btn">삭제</button>
+    </form>      
+         
+    <form action="/write" method="GET">
+    	<button>수정</button>
+    </form>
+ 
+        
+</body>
+</html>

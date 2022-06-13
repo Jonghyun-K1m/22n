@@ -20,6 +20,18 @@ public class BoardService {
 	public void realSAVE(board board) {
 		boardRepository.save(board);		
 	}
+	@Transactional	
+	public void realUPDATE(board board) {
+		boardRepository.update(board);		
+	}
+	@Transactional	
+	public void realDELETE(Long board) {
+		boardRepository.delete(board);		
+	}
+	@Transactional	
+	public board findById(Long input) {
+		return boardRepository.findById(input);	
+	}
 
 	
 	@Transactional	
@@ -52,6 +64,7 @@ public class BoardService {
 	
 		 }
 	 }
+
 
 	
 

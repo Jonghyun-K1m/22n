@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!-- <form th:action="@{'/post/edit/' + ${Lists.id}}" method="post"> -->
+   <!--      <input type="hidden" name="_method" value="put"/>
+        <input type="hidden" name="id" th:value="${Lists.id}"/> -->
+     <form th:action="@{/update}" method="post"> 
+    
+ 
+		<input type="hidden" name="id" th:value="${Lists.id}"/>
+        제목1 : <input type="text" name="title" th:value="${Lists.title}"> <br>
+        작성자 : <input type="text" name="writer" th:value="${Lists.writer}"> <br>
+        <textarea name="content" th:text="${Lists.content}"></textarea><br>
+
+        <input type="submit" value="수정">
+          
+    </form>
+         
+   
+    <form action="/delete" method="POST">
+        <input type="hidden" name="id" th:value="${Lists.id}"/>
+    	<button>삭제</button>
+    </form>
+  
+</body>
+</html>
