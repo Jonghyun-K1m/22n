@@ -32,7 +32,11 @@ public class BoardController {
 //		return "NewFile";
 //    }
 
-	
+	 
+	@GetMapping("asd")
+	public String index() {
+		return "tttt";
+    }	
 	    
 		@GetMapping("view/{no}")
 		public String view(@PathVariable("no") Long id, Model model) {
@@ -114,6 +118,14 @@ public class BoardController {
 		return "write";
     }
 
+	 
+	@GetMapping("table")
+	public String tables(Model model) {
+		List<board> blist = bs.showLists();
+		 model.addAttribute("Lists", blist);
+		 return "retryHome/tables";
+	
+   }
 	
 	
 //  post수정용	
