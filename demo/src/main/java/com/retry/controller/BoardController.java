@@ -34,8 +34,12 @@ public class BoardController {
 
 	 
 	@GetMapping("asd")
-	public String index() {
-		return "tttt";
+	public String indext(Model model) {
+		int kaka= bs.poolSize();
+		
+		 model.addAttribute("data", kaka);
+		 return "tttt";		
+		
     }	
 	    
 		@GetMapping("view/{no}")
@@ -60,6 +64,7 @@ public class BoardController {
 		@GetMapping("indexgo")
 		public String indexgo(Model model) {
 			List<board> blist = bs.showLists();
+			 
 			 model.addAttribute("Lists", blist);
 			 return "index";		
 	    }			
@@ -105,7 +110,10 @@ public class BoardController {
 	@GetMapping("main")
 	public String main(Model model) {
 		List<board> blist = bs.showLists();
+		 int count=blist.size();
 		 model.addAttribute("Lists", blist);
+		 model.addAttribute("size",count);
+		 
 		 return "NewFile";
 	
     }

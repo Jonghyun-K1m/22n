@@ -3,6 +3,7 @@ package com.retry.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -16,6 +17,7 @@ public class BoardService {
 	public BoardService(BoardDB boardRepository) {
 		 this.boardRepository = boardRepository;
 		 }
+	
 	@Transactional	
 	public void realSAVE(board board) {
 		boardRepository.save(board);		
@@ -64,6 +66,12 @@ public class BoardService {
 	
 		 }
 	 }
+
+	public int poolSize() {
+		// TODO Auto-generated method stub
+		return boardRepository.poolSize();
+		
+	}
 
 
 	

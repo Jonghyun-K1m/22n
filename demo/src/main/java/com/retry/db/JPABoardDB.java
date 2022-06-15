@@ -4,6 +4,12 @@ import com.retry.*;
 import com.retry.entity.board;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
+import org.hibernate.Query;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
+
+
 import java.util.List;
 import java.util.Optional;
 public class JPABoardDB implements BoardDB {
@@ -13,6 +19,14 @@ public class JPABoardDB implements BoardDB {
 	public JPABoardDB(EntityManager em) {
 		this.em = em;
 	}
+	
+	public int poolSize() {
+		em.createQuery("select m count(*) from board m", board.class)
+				.getResultList();
+		return 1;
+		
+	}
+	
 	public board save(board board) {
 		em.persist(board);
 		return board;
@@ -45,13 +59,19 @@ public class JPABoardDB implements BoardDB {
 		board board = em.find(board.class, id);
 		return board;
 	}
+	public List<board> findAllpa(Pageable pa) {
+		return em.createQuery("select m from board m", board.class)
+				.getResultList();
+	}
 	public List<board> findAll() {
 		return em.createQuery("select m from board m", board.class)
 				.getResultList();
+				
 	}
 	public List<board> findByName(String name) {
 		List<board> result = em.createQuery("select m from board m where m.writer = :name", board.class)
 				.setParameter("name", name)
+				
 				.getResultList();
 		return result;
 	}
@@ -63,6 +83,7 @@ public class JPABoardDB implements BoardDB {
 				"SELECT u FROM board u WHERE u.title LIKE CONCAT('%',:keyword,'%')", board.class)
 				.setParameter("keyword", keyword)
 				.getResultList();
+			
 		return result;
 	}
 

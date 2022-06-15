@@ -77,6 +77,8 @@
  			<td th:text="${list.title}"></td>			
  			<td th:text="${list.writer}"></td>
 			<td th:text="${list.content}"></td>
+			
+			
 			<td><a th:href="@{'/edit/' +  ${list.id}}" class="more">수정하기</a></td>
 	
 		</tr>
@@ -84,7 +86,7 @@
     </table>
   </div>
 
-   
+   검색 수 : <td th:text="${size}"></td>
      
   <div class="ui divider"></div>
        
