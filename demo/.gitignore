@@ -5,7 +5,8 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
-
+###dnf ###
+/src/main/resources/dnf.properties
 ### STS ###
 .apt_generated
 .classpath
