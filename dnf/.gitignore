@@ -1,13 +1,9 @@
-.properteis
 HELP.md
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
-###dnf ###
-/src/main/resources/dnf.properties
-/src/main/java/com/dnf/service/dnfServiceBeta.java
 
 ### STS ###
 .apt_generated
