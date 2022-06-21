@@ -1,13 +1,13 @@
-package com.hyeon.dnf;
+package com.hyeon.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DnfApplication {
+public class PjtApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DnfApplication.class, args);
+		SpringApplication.run(PjtApplication.class, args);
 	}
 
 }
