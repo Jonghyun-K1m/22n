@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.hyeon.dnf.service.dnfService;
+import com.retry.service.BoardService;
 
 
 
@@ -16,11 +17,10 @@ public class dnfController {
 
 	private static dnfService ds;
 	
-
-	public dnfController() {
-
+	public dnfController(dnfService ds) {
+		this.ds=ds;
 	}
-	@GetMapping("main1")
+	@GetMapping("acc")
 	public String indet(Model model) {
 		
 		 model.addAttribute("data", "mainpage");
