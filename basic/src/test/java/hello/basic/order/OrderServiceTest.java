@@ -2,8 +2,10 @@ package hello.basic.order;
 
 import org.assertj.core.api.Assert;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import hello.basic.Appconfig;
 import hello.basic.member.Grade;
 import hello.basic.member.Member;
 import hello.basic.member.MemberService;
@@ -13,8 +15,16 @@ public class OrderServiceTest {
 
 	
 		
-	MemberService ms= new MemberServiceImpl();
-	OrderService os=new OrderServiceImpl();
+	MemberService ms;
+	OrderService os;
+	
+	@BeforeEach
+	public void beforeEach() {
+		Appconfig appc = new Appconfig();
+		ms=appc.memberService();
+		os=appc.orderService();
+	}
+	
 	@Test
 	void createOrder() {
 		Long memberid = 1L;

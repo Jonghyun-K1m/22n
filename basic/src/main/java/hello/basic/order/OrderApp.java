@@ -1,5 +1,6 @@
 package hello.basic.order;
 
+import hello.basic.Appconfig;
 import hello.basic.member.Grade;
 import hello.basic.member.Member;
 import hello.basic.member.MemberService;
@@ -9,8 +10,11 @@ public class OrderApp {
 
 	public static void main(String[] args) {
 		
-		MemberService ms= new MemberServiceImpl();
-		OrderService os=new OrderServiceImpl();
+		Appconfig Appconfigure = new Appconfig();
+		
+		MemberService ms= Appconfigure.memberService();
+		OrderService os= Appconfigure.orderService();
+		
 		
 		
 		Member member = new Member(1L,"memberA",Grade.VIP);
