@@ -53,8 +53,8 @@ public class SingletonTest {
 	void join3() {
 		ApplicationContext ac = new AnnotationConfigApplicationContext(Appconfig.class);
 		
-		MemberService mst1 = ac.getBean(memberService.class);
-		MemberService mst2 = appcc.memberService();
+		MemberService mst1 = ac.getBean(MemberService.class);
+		MemberService mst2 = ac.getBean(MemberService.class);
 		
 		
 		Assertions.assertThat(mst1).isEqualTo(mst2);
