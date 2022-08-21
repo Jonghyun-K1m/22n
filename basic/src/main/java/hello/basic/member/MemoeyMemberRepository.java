@@ -3,6 +3,11 @@ package hello.basic.member;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
+
+
+
+@Component
 public class MemoeyMemberRepository implements MemberRepository{
 
 	private static Map<Long,Member> store = new HashMap<>();

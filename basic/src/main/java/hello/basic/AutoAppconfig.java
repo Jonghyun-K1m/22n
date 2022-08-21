@@ -20,28 +20,32 @@ import hello.basic.order.OrderServiceImpl;
 
 		excludeFilters= 
 		@ComponentScan.Filter(type= FilterType.ANNOTATION,classes=Configuration.class)
+		//AppCONFIG를 비롯한 Configuration 제외
+		//BEAN등록대신 @COmponent 하면 등록
+		//Appconfig 에서 직접 BEAN으로 의존관계주입하였으나
+		//생성자에 @Autowired달아서 자동으로 ㄱㄱ
 )
+
+
+
 
 public class AutoAppconfig {
 
-	@Bean
 	public DiscountPolicy discountPolicy() {
 		return new RateDiscountPolicy();
 	}
 
-	@Bean
+	
 	public MemberRepository mrespo() {
 		return new MemoeyMemberRepository();
 	}
 	
 
-	@Bean
 	public MemberService memberService() {
 		return new MemberServiceImpl(mrespo());
 	}
 
 
-	@Bean	
 	public OrderService orderService() {
 		return new OrderServiceImpl(
 				mrespo(),
