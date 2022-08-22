@@ -33,4 +33,10 @@ public class loginService {
 		 }
 	 }
 
+	public void loginaction(user model) {
+		// TODO Auto-generated method stub
+		return userRepository.findById(model);	
+		
+	}
+
 }

@@ -38,8 +38,9 @@ public class JPAuserDB implements userDB {
 
 	@Override
 	public user findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		user user = em.find(user.class, id);
+		return user;
+		
 	}
 
 
@@ -83,5 +84,7 @@ public class JPAuserDB implements userDB {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+
 
 }

@@ -11,6 +11,7 @@ public interface userDB {
 //	Optional<board> findById(Long id);
 	user findById(Long id);
 	
+	
 	List<user> findByName(String name);
 	List<user> findByTitle(String title);
 	List<user> findAll();
