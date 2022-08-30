@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -35,7 +36,9 @@ public class Order {
 	@JoinColumn(name="member_id")
 	private Member member;
 
-	@OneToMany(mappedBy="order")//orderitem의order에 의해 종속댐
+	@OneToMany(mappedBy="order",cascade =CascadeType.ALL)
+	//orderitem의order에 의해 종속댐
+	//cascade -> persist(order)하면 orderitems도 persist댐
 	private List<OrderItem> orderItems =new ArrayList<>();
 	
 	@OneToOne(fetch=FetchType.LAZY)
