@@ -41,7 +41,7 @@ public class Order {
 	//cascade -> persist(order)하면 orderitems도 persist댐
 	private List<OrderItem> orderItems =new ArrayList<>();
 	
-	@OneToOne(fetch=FetchType.LAZY)
+	@OneToOne(fetch=FetchType.LAZY,cascade =CascadeType.ALL)
 	@JoinColumn(name="delivery_id")
 	private Delivery delivery;
 	private LocalDateTime orderDate;
@@ -49,4 +49,58 @@ public class Order {
 	
 	@Enumerated(EnumType.STRING)//ordinal=숫자
 	private OrderStatus status;
+
+	//연관관계
+	public void setMember(Member mem) {
+		this.member=mem;
+		mem.getOrders().add(this);
+	}
+	public void addOrderItem(OrderItem otm) {
+		orderItems.add(otm);
+		otm.setOrder(this);
+	}
+	public void setDelivery(Delivery dlv) {
+		this.delivery=dlv;
+		dlv.setOrder(this);
+	}
+
+	//생성자
+	public static Order createOrder(Member mem, Delivery del, OrderItem... orderItems)
+	{
+		Order order=new Order();
+		order.setMember(mem);
+		order.setDelivery(del);
+		for(OrderItem itm : orderItems) {
+			order.addOrderItem(itm);
+		}
+		order.setStatus(OrderStatus.ORDER);
+		order.setOrderDate(LocalDateTime.now());
+		return order;
+	}
+
+	//주문취소
+	public void cancel(){
+		if(delivery.getStatus()==DeliverySatus.COMP) {
+			//배송완료면 캔슬안대
+			throw new IllegalStateException("이미 배송완료");
+		}
+		this.setStatus(OrderStatus.CANCEL);
+		for(OrderItem otm : orderItems) {
+			otm.cancel(); //->otm의 cancel로직호출
+		}
+		
+	}
+
+	//조회로직
+	public int getTotalPrice() {
+		int totalPrice=0;
+		for(OrderItem otm : orderItems) {
+			totalPrice += otm.getTotalPrice(); //otm -> gtP호출
+		}
+	
+		return totalPrice;
+	}
+	
+	
+	
 }

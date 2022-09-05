@@ -1,5 +1,7 @@
 package jpabook.jpashop.domain;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,4 +33,27 @@ public class OrderItem {
 	private int orderPrice;
 	private int count;
 	
+	protected OrderItem() {
+		
+	}
+	//생성자
+	public static OrderItem createOrderItem(Item item,int orderPrice,int count)
+	{
+		OrderItem otm=new OrderItem();
+		otm.setItem(item);
+		otm.setOrderPrice(orderPrice);
+		otm.setCount(count);
+		
+		item.removeStock(count);
+		return otm;
+	}
+	
+	
+	//비지니스로직
+	public void cancel() {
+		getItem().addStock(count);
+	}
+	public int getTotalPrice() {
+		return getOrderPrice()*getCount();
+	}
 }

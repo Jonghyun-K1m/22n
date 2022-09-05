@@ -12,6 +12,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 
+import jpabook.jpashop.exception.NotEnoughStockException;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,4 +34,22 @@ public abstract class Item {
 	@ManyToMany(mappedBy="items")
 	private List<Category> categories =new ArrayList<>();
 
+	
+	//entity 에 비지니스로직추가
+	//setter등 사용안하게하기위함임
+	public void addStock(int quantity)
+	{
+		this.stockQuantity+=quantity;
+	}
+	public void removeStock(int quantity)
+	{
+		int result = this.stockQuantity-quantity;
+		if(result<0) {
+			throw new NotEnoughStockException("수량이0보다작ㅇ");
+		}
+		this.stockQuantity=result;
+	}
+	
+	
+	
 }
