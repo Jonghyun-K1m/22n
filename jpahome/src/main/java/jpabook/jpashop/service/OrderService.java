@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import jpabook.jpashop.db.ItemDB;
 import jpabook.jpashop.db.MemberDB;
 import jpabook.jpashop.db.OrderDB;
+import jpabook.jpashop.db.OrderSearch;
 import jpabook.jpashop.domain.Delivery;
 import jpabook.jpashop.domain.Item;
 import jpabook.jpashop.domain.Member;
@@ -55,7 +56,7 @@ public class OrderService {
 		order.cancel(); //오더의 cancel에서 다함
 	}
 	
-//	public List<Order> findsOrders(OrderSearch osch){
-//		return oDB.findAll(osch);
-//	}
+	public List<Order> findsOrders(OrderSearch osch){
+		return oDB.findAllByString(osch);
+	}
 }

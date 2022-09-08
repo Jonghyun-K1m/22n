@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import jpabook.jpashop.db.ItemDB;
 import jpabook.jpashop.domain.Item;
 import jpabook.jpashop.domain.Member;
+import jpabook.jpashop.domain.item.Book;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -25,14 +26,25 @@ public class ItemService {
 	@Transactional
 	public void saveItem(Item Item)
 	{
+		
 		iDB.save(Item);
 	
 	}
+	//업뎃 , 변경감지(JPA가 알아서해)
+	@Transactional
+	public void updateItem(Long itemId, String name, int price, int stockQuantity) {
+	     Item item = iDB.findOne(itemId);
+	     item.setName(name);
+	     item.setPrice(price);
+	     item.setStockQuantity(stockQuantity);
+	     
+	}
+
 		
 	
 	//조회
 	@Transactional(readOnly=true) //스부트 트랜잭션사용,성능개선위한 코드
-	public List<Item> findMembers(){
+	public List<Item> findItems(){
 		return iDB.findAll();
 	}
 	@Transactional(readOnly=true) //스부트 트랜잭션사용,성능개선위한 코드

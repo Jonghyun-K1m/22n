@@ -80,7 +80,7 @@ public class Order {
 
 	//주문취소
 	public void cancel(){
-		if(delivery.getStatus()==DeliverySatus.COMP) {
+		if(delivery.getStatus()==DeliveryStatus.COMP) {
 			//배송완료면 캔슬안대
 			throw new IllegalStateException("이미 배송완료");
 		}

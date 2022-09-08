@@ -30,6 +30,6 @@ public class Delivery {
 	private Address address;
 	
 	@Enumerated(EnumType.STRING)//ordinal=숫자
-	private DeliverySatus status;
+	private DeliveryStatus status;
 	
 }
