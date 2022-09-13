@@ -4,6 +4,13 @@
 	 <title>Hello</title>
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
+<script type="text/javascript">
+	var req = new XMLHttpRequest();
+	req.open('GET',document.location,false);
+	req.send(null);
+	var headers = req.getAllResponseHeaders().toLowerCase();
+	alert(headers);
+</script>
 <body>
 <div class="container">
  <div th:replace="fragments/bodyHeader :: bodyHeader" />
@@ -13,6 +20,7 @@
  <p>
  <a class="btn btn-lg btn-secondary" href="/members/new">회원 가입</a>
  <a class="btn btn-lg btn-secondary" href="/members">회원 목록</a>
+<li> <a class="btn btn-lg btn-secondary" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=izxS7XQJDCPeYvHN5jeF&state=STATE_STRING&redirect_uri=http://localhost:8080/naver/auth">네이버 로그인</a></li>
  </p>
  <p class="lead">상품 기능</p>
  <p>

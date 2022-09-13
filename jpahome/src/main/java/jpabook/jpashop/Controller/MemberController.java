@@ -57,4 +57,18 @@ public class MemberController {
 		return "members/memberList";
 	}
 
+
+	@GetMapping("/dd")
+	public String listd(Model model) {
+
+
+		return "NewFile";
+	}
+
+	@GetMapping("/ddd")
+	public String listda(Model model) {
+
+
+		return "login";
+	}
 }
