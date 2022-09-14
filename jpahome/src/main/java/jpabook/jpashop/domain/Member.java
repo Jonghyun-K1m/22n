@@ -22,6 +22,9 @@ public class Member {
 	private Long id;
 	private String name;
 	
+	private String salt;
+	
+	
 	@Embedded
 	private Address address;
 	

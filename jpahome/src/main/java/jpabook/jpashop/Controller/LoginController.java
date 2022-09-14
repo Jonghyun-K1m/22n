@@ -31,7 +31,6 @@ public class LoginController {
 
     public static final String CLIENT_ID = "izxS7XQJDCPeYvHN5jeF";
 
-/*
     @GetMapping("/auth")
     public String authNaver(@RequestParam String code, @RequestParam String state, Model s) {
         String accessToken = extractAccessToken(requestAccessToken(generateAuthCodeRequest(code, state)).getBody());
@@ -39,7 +38,9 @@ public class LoginController {
         String acc=requestProfile(generateProfileRequest(accessToken)).getBody();    
         return requestProfile(generateProfileRequest(accessToken)).getBody();
     }
-*/
+
+    
+   /*
     @GetMapping("/auth")
     public ResponseEntity<?> authNaver(@RequestParam String code, @RequestParam String state, Model s) {
         String accessToken = extractAccessToken(requestAccessToken(generateAuthCodeRequest(code, state)).getBody());
@@ -59,7 +60,7 @@ public class LoginController {
         return new ResponseEntity<>(ad,hd,HttpStatus.MOVED_PERMANENTLY);
         
     }
-
+*/
 
     private ResponseEntity<String> requestProfile(HttpEntity request) {
         RestTemplate restTemplate = new RestTemplate();

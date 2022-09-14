@@ -36,4 +36,10 @@ public class MemberDB {
 				.getResultList();
 	}
 	
+	public List<Member> findBySocial(String params) {
+		return em.createQuery("select m from Member m where m.salt=:paramet",Member.class)
+				.setParameter("paramet", params)
+				.getResultList();
+	}
+	
 }
