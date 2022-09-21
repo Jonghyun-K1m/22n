@@ -55,5 +55,10 @@ public class MemberService {
 	public Member findOne(Long memberId){
 		return mDB.findOne(memberId);
 	}
-		
+	@Transactional(readOnly=true) //스부트 트랜잭션사용,성능개선위한 코드
+	public Member findOnebySalt(String saltValue){
+		return mDB.findwithSocial(saltValue);
+	}	
+
+
 }

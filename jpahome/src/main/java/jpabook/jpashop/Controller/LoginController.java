@@ -12,6 +12,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -21,22 +22,56 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import jpabook.jpashop.domain.Member;
+import jpabook.jpashop.service.ItemService;
+import jpabook.jpashop.service.MemberService;
+import jpabook.jpashop.service.OrderService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+//@Controller
 @RestController
 @RequestMapping("/naver")
+@RequiredArgsConstructor
+//-> fianl 값에대해 생성자만들어줌 , the blank final.. initialized 해결
+//-> osv,msv,isv
 public class LoginController {
 
     public static final String CLIENT_ID = "izxS7XQJDCPeYvHN5jeF";
 
+
+	private final OrderService osv;
+	private final MemberService msv;
+	private final ItemService isv;
+
+
+    
+    
     @GetMapping("/auth")
     public String authNaver(@RequestParam String code, @RequestParam String state, Model s) {
-        String accessToken = extractAccessToken(requestAccessToken(generateAuthCodeRequest(code, state)).getBody());
+     
+    	
+    	String accessToken = extractAccessToken(requestAccessToken(generateAuthCodeRequest(code, state)).getBody());
         log.info(accessToken);
-        String acc=requestProfile(generateProfileRequest(accessToken)).getBody();    
-        return requestProfile(generateProfileRequest(accessToken)).getBody();
+        String JSON_DATA=requestProfile(generateProfileRequest(accessToken)).getBody();    
+    //JSON 분해하고 로그인 구현하면댐
+    //추후에 loginservice로 이관
+	    JSONObject jObject = new JSONObject(JSON_DATA);
+	    String getMessage= jObject.getString("message");
+	    JSONObject getResponse= jObject.getJSONObject("response");
+		String getId =   getResponse.getString("id");
+		
+		Member finded= msv.findOnebySalt(getId);
+		String sId=finded.getName();
+	     return sId + "반갑습니다";
+	     
+	  //  return requestProfile(generateProfileRequest(accessToken)).getBody();
+       // return "redirect:/items";
     }
 
     
