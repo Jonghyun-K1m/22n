@@ -43,6 +43,7 @@ import lombok.extern.slf4j.Slf4j;
 public class LoginController {
 
     public static final String CLIENT_ID = "izxS7XQJDCPeYvHN5jeF";
+    public static final String CLIENT_SECRET = "rI5BXaPCLo";
 
 
 	private final OrderService osv;

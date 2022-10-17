@@ -60,5 +60,9 @@ public class MemberService {
 		return mDB.findwithSocial(saltValue);
 	}	
 
-
+	@Transactional
+	public void update(Long id,String name) {
+		Member mem=mDB.findOne(id);
+		mem.setName(name);
+	}
 }
